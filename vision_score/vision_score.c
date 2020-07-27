@@ -6,7 +6,7 @@
 https://code.sasa.hs.kr/problem.php?id=2309
 */
 
-int	ft_calculating_score(char *map, int idx, int w, int s, int d)
+int	ft_calculating_score(char *map, int idx, int map_size, int w, int s, int d)
 {
 	int	score;
 	int	i;
@@ -16,28 +16,36 @@ int	ft_calculating_score(char *map, int idx, int w, int s, int d)
 	bush_f = 0;
 	if (map[idx] == 'b' || map[idx] == 'H')
 		bush_f = 1;
-	score += s;
 	if (map[idx] == 'e' || map[idx] == 'H')
 		score += d;
+	score += s;
 	i = idx + 1;
-	while (i <= idx + w)
+	while (i <= idx + w && i < map_size)
 	{
-		if (map[i] != 'b' || map[i] != 'H')
+		if ((map[i] == 'b' || map[i] == 'H') && !bush_f)
+		{
+			i++;
+			continue;
+		}
+		if (map[i] != 'b' && map[i] != 'H')
 			bush_f = 0;
-		if ((map[i] == 'b' || map[i] == 'H') && bush_f)
-			break;
 		if (map[i] == 'e' || map[i] == 'H')
 			score += d;
 		score += s;
-		i++;		
+		i++;
 	}
 	i = idx - 1;
-	while (i >= idx - w)
+	if (map[idx] == 'b' || map[idx] == 'H')
+		bush_f = 1;
+	while (i >= idx - w && i >= 0)
 	{
-		if (map[i] != 'b' || map[i] != 'H')
+		if ((map[i] == 'b' || map[i] == 'H') && !bush_f)
+		{
+			i--;
+			continue;
+		}
+		if (map[i] != 'b' && map[i] != 'H')
 			bush_f = 0;
-		if ((map[i] == 'b' || map[i] == 'H') && bush_f)
-			break;
 		if (map[i] == 'e' || map[i] == 'H')
 			score += d;
 		score += s;
@@ -126,10 +134,12 @@ int	vision_score(char *map_value, char *enemy_ward, char *bush_location)
 		if (*bush_location != '\0')
 			bush_location++;
 	}
-	idx = ward_scan_size;
-	while (idx +  ward_scan_size <= map_size)
+	printf("map : %s\n", map);
+	idx = 0;
+	while (idx < map_size)
 	{
-		score = ft_calculating_score(map, idx, ward_scan_size, scan_score, defense_score);
+		score = ft_calculating_score(map, idx, map_size, ward_scan_size, scan_score, defense_score);
+		printf("idx : %d	score : %d	answer : %d\n", idx, score, answer);
 		if (score > answer)
 			answer = score;
 		idx++;
@@ -153,8 +163,8 @@ int	main(int argc, char *argv[])
 	}
 	else
 		answer = vision_score(argv[1], argv[2], argv[3]);
-	printf("%d\n", answer);
+	printf("score : %d\n", answer);
 	t2 = clock();
-	printf("run_time : %ld\n", t2 - t);
+	printf("run_time : %ld ms\n", t2 - t);
 	return (0);
 }
