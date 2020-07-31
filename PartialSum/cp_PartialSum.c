@@ -1,27 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 
 int	scan_arr(int *arr, int value, int arr_size){
-	int	scan_size;
-	int	idx;
-	int	i;
+	int	s;
+	int	d;
 	int	sum;
+	int	size;
 
-	scan_size = 0;
-	while(++scan_size <= arr_size){
-		idx = -1;
-		while(++idx < arr_size - scan_size + 1){
-			i = idx;
-			sum = 0;
-			while(i < scan_size + idx){
-				sum += arr[i++];
-			}
-			if (value <= sum)
-				return (scan_size);
-		}
+	d = 0;
+	s = 0;
+	sum = 0;
+	size = arr_size;
+	while (d < arr_size){
+		while (sum < value && d < arr_size)
+			sum += arr[d++];
+		if (s == 0 && d >= arr_size && sum < value)
+			return (0);
+		while (sum >= value)
+			sum -= arr[s++];
+		if (size > d - s + 1)
+			size = d - s + 1;
 	}
-	return (0);
+	//	노답시 0 리턴 구현하기
+	return (size);
 }
 
 char	*jump_to_next(char *str){
@@ -36,7 +37,7 @@ int	ft_atoi(char *str){
 	int	num;
 
 	num = 0;
-	while(*str && *str >= '0' && *str <= '9'){
+	while(*str >= '0' && *str <= '9' && *str){
 		num *= 10;
 		num += *str - '0';
 		str++;
@@ -61,36 +62,29 @@ int	*str_to_int_arr(char *str, int	size){
 	return (arr);
 }
 
-int	partial_sum(char *user_input1, char *user_input2){
-	int	sequence_size;
-	int	reference_value;
-	int	*sequence;
+int	partial_sum(int user_size, int user_value, char *user_input2){
 	int	answer;
+	int	*sequence;
 
-	sequence_size = ft_atoi(user_input1);
-	user_input1 = jump_to_next(user_input1);
-	reference_value = ft_atoi(user_input1);
-	sequence = str_to_int_arr(user_input2, sequence_size);
+	sequence = str_to_int_arr(user_input2, user_size);
 	if (!sequence)
 		return (0);
-	answer = scan_arr(sequence, reference_value, sequence_size);
+	answer = scan_arr(sequence, user_value, user_size);
 	free(sequence);
 	return (answer);
 }
 
-int	main(int argc, char *argv[]){
+int	main(void){
 	int	answer;
-	int	time1;
-	int	time2;
+	int	user_size;
+	int	user_value;
+	char	*user_input2;
 
-	time1 = clock();
-	if (argc != 3)
-		printf("Please enter correct input!!\n");
-	else{
-		answer = partial_sum(argv[1], argv[2]);
-		printf("%d\n", answer);
-	}
-	time2 = clock();
-	printf("time : %d\n", time2 - time1);
+	user_input2 = (char*)malloc(sizeof(char) * (user_size * 5 + user_size));
+	getchar();
+	fgets(user_input2, user_size * 5 + user_size, stdin);
+	answer = partial_sum(user_size, user_value, user_input2);
+	printf("answer : %d\n", answer);
+	free(user_input2);
 	return (0);
 }
