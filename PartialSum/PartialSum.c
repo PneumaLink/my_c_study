@@ -1,28 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
-//#include <time.h>
 
 int	scan_arr(int *arr, int value, int arr_size){
+	int	s;
+	int	d;
 	int	sum;
-	int 	scan_size;
-	int	i;
-	
-	scan_size = 0;
-	while (++scan_size <= arr_size){
-		sum = 0;
-		i = 0;
-		while (i<scan_size)
-			sum += arr[i++];
-		if (sum >= value)	
-			return (scan_size);
-		while (i < arr_size){
-			sum -= arr[i - scan_size];
-			sum += arr[i++];
-			if (sum >= value)
-				return (scan_size);
-		}
+	int	size;
+
+	d = 0;
+	s = 0;
+	sum = 0;
+	size = arr_size;
+	while (d < arr_size){
+		while (sum < value && d < arr_size)
+			sum += arr[d++];
+		if (s == 0 && d >= arr_size && sum < value)
+			return (0);
+		while (sum >= value)
+			sum -= arr[s++];
+		if (size > d - s + 1)
+			size = d - s + 1;
 	}
-	return (0);
+	//	노답시 0 리턴 구현하기
+	return (size);
 }
 
 char	*jump_to_next(char *str){
@@ -37,7 +37,7 @@ int	ft_atoi(char *str){
 	int	num;
 
 	num = 0;
-	while(*str && *str >= '0' && *str <= '9'){
+	while(*str >= '0' && *str <= '9' && *str){
 		num *= 10;
 		num += *str - '0';
 		str++;
@@ -79,17 +79,15 @@ int	main(void){
 	int	user_size;
 	int	user_value;
 	char	*user_input2;
-	//int	time1;
-	//int	time2;
 
-	//time1 = clock();
 	scanf("%d %d", &user_size, &user_value);
-	user_input2 = (char*)malloc(sizeof(char) * (user_size * 2));
+	user_input2 = (char*)malloc(sizeof(char) * (user_size * 5 + user_size));
+	if (!user_input2)
+		return (0);
 	getchar();
-	fgets(user_input2, user_size * 2, stdin);
+	fgets(user_input2, user_size * 5 + user_size, stdin);
 	answer = partial_sum(user_size, user_value, user_input2);
-	printf("answer : %d\n", answer);
-	//time2 = clock();
-	//printf("time : %d\n", time2 - time1);
+	printf("%d", answer);
+	free(user_input2);
 	return (0);
 }
