@@ -28,19 +28,15 @@ int	main(void){
 		sum += arr[i];
 	}
 	average = (double)sum / (double)n_input1;
-	std_deviation = 10;
+	std_deviation = 1000000;
 	for (i = k_input2 - 1 ; i < n_input1 ; i++){
-		printf("i : %d*******\n", i);
 		dispersion = 0;
 		for (l = i - k_input2 + 1; l <= i ; l++){
-			printf("l : %d\n", l);
 			n = floating_point(arr[l] - average);
-			dispersion += floating_point(n * n);
+			dispersion += floating_point(pow(n * n, 0.5));
 		}
 		dispersion = floating_point(dispersion / k_input2);
-		printf("dispersion : %.11f\n", dispersion);
 		dispersion = floating_point(pow(dispersion, 0.5));
-		printf("dispersion : %.11f\n", dispersion);
 		if (std_deviation > dispersion)
 			std_deviation = dispersion;
 	}
