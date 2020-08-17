@@ -13,30 +13,26 @@ double	floating_point(double f){
 int	main(void){
 	int	n_input1;
 	int	k_input2;
+	long long	sum;
 	int	i;
 	int	l;
-	int	sum;
-	double	average;
-	double	dispersion;
 	double	std_deviation;
-	double	n;
+	double	dispersion;
 
 	scanf("%d %d", &n_input1, &k_input2);
-	sum = 0;
-	for (i = 0 ; i < n_input1 ; i++){
+	for (i = 0 ; i < n_input1 ; i++)
 		scanf("%d", &arr[i]);
-		sum += arr[i];
-	}
-	average = (double)sum / (double)n_input1;
 	std_deviation = 1000000;
-	for (i = k_input2 - 1 ; i < n_input1 ; i++){
+	for (i = 0 ; i < n_input1 - k_input2 + 1 ; i++){
+		sum = 0;
+		for (l = i ; l < i + k_input2 ; l++)
+			sum += arr[l];
 		dispersion = 0;
-		for (l = i - k_input2 + 1; l <= i ; l++){
-			n = floating_point(arr[l] - average);
-			dispersion += floating_point(pow(n * n, 0.5));
+		for (l = i ; l < i + k_input2 ; l++){
+			dispersion +=floating_point((arr[l] - (double)sum / (double)k_input2) * (arr[l] - (double)sum / (double)k_input2));
+			dispersion = floating_point(dispersion);
 		}
-		dispersion = floating_point(dispersion / k_input2);
-		dispersion = floating_point(pow(dispersion, 0.5));
+		dispersion = sqrt(dispersion / (double)k_input2);
 		if (std_deviation > dispersion)
 			std_deviation = dispersion;
 	}
