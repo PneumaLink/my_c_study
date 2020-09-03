@@ -43,5 +43,7 @@ int	main(void){
 	}
 	for (idx = 0 ; idx < line_num ; idx++)
 		printf("%c %d\n", arr_char[idx], arr_int[idx]);
+	free(arr_char);
+	free(arr_int);
 	return (0);
 }
