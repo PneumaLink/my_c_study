@@ -2,25 +2,29 @@
 
 tn	*ft_addnode(tn **tree, int n)
 {
+	tn	*next_node;
 	tn	*new_node;
-	tn	*mom;
-	tn	*head;
+	tn	*cp_tree;
 
 	new_node = ft_newnode(n);
 	if (!new_node)
-		return (NULL);
+		return (*tree);
 	if (!*tree)
 		return (new_node);
-	head = *tree;
-	while(*tree)
+	cp_tree = *tree;
+	while(1)
 	{
-		mom = *tree;
-		if ((*tree)->content > new_node->content)
-			*tree = (*tree)->bigson;
+		if (n < cp_tree->content)
+			next_node = cp_tree->smallson;
 		else
-			*tree = (*tree)->smallson;
+			next_node = cp_tree->bigson;
+		if (next_node)
+			cp_tree = next_node;
+		else
+		{
+			next_node = new_node;
+			break ;
+		}
 	}
-	*tree = new_node;
-	new_node->mom = mom;
-	return (head);
+	return (*tree);
 }
