@@ -1,6 +1,6 @@
 #include "libtree.h"
 
-tn	*ft_addnode(tn **tree, int n)
+tn	**ft_addnode(tn **tree, int n)
 {
 	tn	*next_node;
 	tn	*new_node;
@@ -8,9 +8,9 @@ tn	*ft_addnode(tn **tree, int n)
 
 	new_node = ft_newnode(n);
 	if (!new_node)
-		return (*tree);
+		return (tree);
 	if (!*tree)
-		return (new_node);
+		return (&new_node);
 	cp_tree = *tree;
 	while(1)
 	{
@@ -26,5 +26,5 @@ tn	*ft_addnode(tn **tree, int n)
 			break ;
 		}
 	}
-	return (*tree);
+	return (tree);
 }
