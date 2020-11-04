@@ -1,30 +1,33 @@
 #include "libtree.h"
 
-tn	**ft_addnode(tn **tree, int n)
+void	ft_addnode(tn **tree, int n)
 {
-	tn	*next_node;
-	tn	*new_node;
-	tn	*cp_tree;
+	tn	*new_n;
+	tn	*next;
 
-	new_node = ft_newnode(n);
-	if (!new_node)
-		return (tree);
-	if (!*tree)
-		return (&new_node);
-	cp_tree = *tree;
-	while(1)
+	new_n = malloc(sizeof(tn));
+	if (!new_n)
+		return ;
+	if (!(*tree))
 	{
-		if (n < cp_tree->content)
-			next_node = cp_tree->smallson;
-		else
-			next_node = cp_tree->bigson;
-		if (next_node)
-			cp_tree = next_node;
-		else
-		{
-			next_node = new_node;
-			break ;
-		}
+		*tree = new_n;
+		return ;
 	}
-	return (tree);
+	while (1)
+	{
+		if (n > (*tree)->content)
+			next = (*tree)->bigson;
+		else if (n < (*tree)->content)
+			next = (*tree)->smallson;
+		else
+			return ;
+
+		if (!next)
+		{
+			next = new_n;
+			new_n->mom = *tree;
+			return ;
+		}else
+			(*tree) = next;
+	}
 }

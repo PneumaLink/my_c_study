@@ -13,7 +13,7 @@ typedef struct	tree_node
 }	tn;
 
 tn	*ft_newnode(int content);
-tn	*ft_addnode(tn **tree, int n);
+void	ft_addnode(tn **tree, int n);
 tn	*ft_findnode(tn *head, int n);
 
 #endif

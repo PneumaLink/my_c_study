@@ -4,7 +4,7 @@ tn	*ft_newnode(int content)
 {
 	tn	*newnode;
 
-	newnode = malloc(sizeof(tn));
+	newnode = (tn *)malloc(sizeof(tn));
 	if (!newnode)
 		return (NULL);
 	newnode->content = content;
