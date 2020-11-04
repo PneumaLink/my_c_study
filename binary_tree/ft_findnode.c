@@ -4,21 +4,12 @@ tn	*ft_findnode(tn *head, int n)
 {
 	while (head)
 	{
-		if (head->content == n)
-		{
-			printf("find it !! break\n");
+		if (n == head->content)
 			break ;
-		}
-		if (head->content < n)
-		{
-			printf("move big...\n");
+		else if (n > head->content)
 			head = head->bigson;
-		}
 		else
-		{
-			printf("move small...\n");
 			head = head->smallson;
-		}
 	}
 	return (head);
 }
