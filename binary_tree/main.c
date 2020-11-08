@@ -2,7 +2,7 @@
 
 int	main()
 {
-	int	arr[] = {5,1,9,2,8,10,3,7,4,6};
+	int	arr[] = {10,5,4,3,2,1,6,7,8};
 	int	arr2[] = {0,5,1,99,2,88,3,77,4,66,10};
 	int	idx;
 	tn	*head;
@@ -16,7 +16,7 @@ int	main()
 		return (0);
 	}
 	printf("push node...\n");
-	for (idx = 1 ; idx < 10 ; idx++)
+	for (idx = 1 ; idx < 9 ; idx++)
 	{
 		printf("insert %d\n", arr[idx]);
 		ft_insertnode(head, arr[idx]);
