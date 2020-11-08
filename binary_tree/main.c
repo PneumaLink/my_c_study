@@ -12,7 +12,7 @@ int	main()
 	head = ft_createnote(arr[0]);
 	if (!head)
 	{
-		printf("head allocate fall!!\n");
+		printf("head allocate fail!!\n");
 		return (0);
 	}
 	printf("push node...\n");
