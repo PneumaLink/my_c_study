@@ -3,8 +3,8 @@ CFLAGS = -Wall -Wextra -Werror
 CC = gcc
 RM = rm -f
 AR = ar rcus
-FILES = ft_newnode \
-		ft_addnode \
+FILES = ft_createnote \
+		ft_insertnode \
 		ft_findnode
 
 SRCS_DIR = ./
