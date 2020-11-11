@@ -12,8 +12,8 @@ typedef struct	tree_node
 	struct tree_node	*smallson;
 }	tn;
 
-tn	*ft_createnote(int content);
-void	ft_insertnode(tn *tree, int n);
-tn	*ft_findnode(tn *head, int n);
+tn	*ft_create_node(int content);
+void	ft_insert_node(tn *tree, int n);
+tn	*ft_find_node(tn *head, int n);
 
 #endif

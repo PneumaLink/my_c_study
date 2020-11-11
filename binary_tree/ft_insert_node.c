@@ -1,12 +1,12 @@
 #include "libtree.h"
 #include <stdio.h>
 
-void	ft_insertnode(tn *tree, int n)
+void	ft_insert_node(tn *tree, int n)
 {
 	tn	*new_n;
 	tn	**next;
 
-	new_n = ft_createnote(n);
+	new_n = ft_create_node(n);
 	if (!new_n)
 		return ;
 	while (1)

@@ -1,6 +1,6 @@
 #include "libtree.h"
 
-tn	*ft_createnote(int n)
+tn	*ft_create_node(int n)
 {
 	tn	*newnode;
 

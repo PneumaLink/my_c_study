@@ -3,9 +3,10 @@ CFLAGS = -Wall -Wextra -Werror
 CC = gcc
 RM = rm -f
 AR = ar rcus
-FILES = ft_createnote \
-		ft_insertnode \
-		ft_findnode
+FILES = ft_create_node \
+		ft_insert_node \
+		ft_find_node \
+		ft_delete_node
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))

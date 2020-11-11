@@ -1,6 +1,6 @@
 #include "libtree.h"
 
-tn	*ft_findnode(tn *head, int n)
+tn	*ft_find_node(tn *head, int n)
 {
 	while (head)
 	{
