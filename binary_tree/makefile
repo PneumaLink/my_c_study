@@ -4,8 +4,10 @@ CC = gcc
 RM = rm -f
 AR = ar rcus
 FILES = ft_create_node \
+		ft_insert_cnode \
 		ft_insert_node \
 		ft_find_node \
+		ft_delete_cnode \
 		ft_delete_node
 
 SRCS_DIR = ./

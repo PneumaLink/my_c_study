@@ -9,7 +9,7 @@ int	main()
 	tn	*pin;
 	tn	*cp_head;
 
-	head = ft_createnote(arr[0]);
+	head = ft_create_node(arr[0]);
 	if (!head)
 	{
 		printf("head allocate fail!!\n");
@@ -19,17 +19,22 @@ int	main()
 	for (idx = 1 ; idx < 9 ; idx++)
 	{
 		printf("insert %d\n", arr[idx]);
-		ft_insertnode(head, arr[idx]);
+		ft_insert_cnode(head, arr[idx]);
 	}
 	printf("push finish!\n");
 	for (idx = 0 ; idx < 11 ; idx++)
 	{
-		pin = ft_findnode(head, arr2[idx]);
+		pin = ft_find_node(head, arr2[idx]);
 		printf("%d is... ", arr2[idx]);
 		if (pin)
 			printf("found it %d\n", arr2[idx]);
 		else
 			printf("not found\n");
+	}
+	for (idx = 0 ; idx < 11 ; idx++)
+	{
+		printf("delete %d...\n", arr2[idx]);
+		ft_delete_cnode(head, arr2[idx]);
 	}
 	return (0);
 }

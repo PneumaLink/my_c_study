@@ -13,7 +13,10 @@ typedef struct	tree_node
 }	tn;
 
 tn	*ft_create_node(int content);
-void	ft_insert_node(tn *tree, int n);
+void	ft_insert_cnode(tn *tree, int n);
+void	ft_insert_node(tn *tree, tn *n);
 tn	*ft_find_node(tn *head, int n);
+void	ft_delete_cnode(tn *tree, int content);
+void	ft_delete_node(tn *tree, tn *content);
 
 #endif

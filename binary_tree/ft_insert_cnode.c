@@ -1,12 +1,12 @@
 #include "libtree.h"
 
-void	ft_insert_node(tn *tree, tn *node)
+void	ft_insert_cnode(tn *tree, int n)
 {
+	tn	*new_n;
 	tn	**next;
-	int	n;
 
-	n = node->content;
-	if (!node)
+	new_n = ft_create_node(n);
+	if (!new_n)
 		return ;
 	while (1)
 	{
@@ -16,8 +16,8 @@ void	ft_insert_node(tn *tree, tn *node)
 			next = &(tree->bigson);
 		if (!*next)
 		{
-			*next = node;
-			node->mom = tree;
+			*next = new_n;
+			new_n->mom = tree;
 			return ;
 		}
 		else
